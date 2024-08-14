@@ -1,0 +1,22 @@
+# Ignore arquivos de log
+*.log
+
+# Ignore arquivos de compilação
+*.o
+*.a
+*.out
+
+# Ignore diretórios de build
+/build/
+
+# Ignore arquivos temporários do sistema
+*.swp
+*.tmp
+*.bak
+exemplo.hs
+lista1q.hs
+# Ignore diretórios de dependências do Node.js
+node_modules/
+
+# Ignore ambientes virtuais do Python
+venv/
