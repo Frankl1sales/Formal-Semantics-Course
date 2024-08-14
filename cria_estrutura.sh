@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navegar até a pasta do curso
-cd ~/temp/UFPEL/AULAS/Computer-Networks-Course # escifique o diretório
+cd ~/temp/UFPEL/AULAS/Formal-Semantics-Course # especifique o diretório
 
 # Criar os diretórios principais
 mkdir -p docs/lecture_notes docs/assignments
@@ -24,3 +24,9 @@ done
 
 # Mensagem de confirmação
 echo "Estrutura de diretórios criada com sucesso!"
+
+# Comentário sobre permissões
+# Para tornar este script executável, use o comando:
+# chmod +x criar_estrutura.sh
+# Isso garante que o script tenha permissões de execução, permitindo que seja executado diretamente.
+

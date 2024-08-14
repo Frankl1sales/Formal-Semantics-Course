@@ -18,4 +18,4 @@ Instruções de uso do projeto.
 
 ## Licença
 
-Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+Este projeto está licenciado sob os termos da licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.fgbddf
