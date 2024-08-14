@@ -263,6 +263,72 @@ pegaMaiores a (x:xs)
 --    | x > a 
 --    |
 -- Função principal para testes
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------- Fundamentos: Tipo Algebricos -----------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+-- Definição da árvore
+data Arvore = Folha Int | Nodo Int Arvore Arvore
+  deriving (Eq, Show)
+
+-- Exemplo de árvore
+arv1 :: Arvore
+arv1 = Nodo 10 (Nodo 14 (Nodo 1 (Folha 4) (Folha 2)) (Folha 6)) (Folha 9)
+
+-- (1) Função para multiplicar todos os valores na árvore por um inteiro
+multArvore :: Int -> Arvore -> Arvore
+multArvore x (Folha v) = Folha (x * v)
+multArvore x (Nodo v esq dir) = Nodo (x * v) (multArvore x esq) (multArvore x dir)
+
+-- (1) Aplicar multiplicação por 3
+resultado :: Arvore
+resultado = multArvore 3 arv1
+
+-- (2) Função para contar o número de folhas na árvore
+contaFolhas :: Arvore -> Int
+contaFolhas (Folha _) = 1  -- Conta uma folha
+contaFolhas (Nodo _ esq dir) = contaFolhas esq + contaFolhas dir  -- Soma as folhas das subárvores esquerda e direita
+
+-- (3) Função para contar o número de nós (Nodo) na árvore
+contaNodos :: Arvore -> Int
+contaNodos (Folha _) = 0  -- Folhas não são contadas como nós
+contaNodos (Nodo _ esq dir) = 1 + contaNodos esq + contaNodos dir -- Conta o nó atual e soma os nós das subárvores esquerda e direita
+
+-- (4) Função para contar quantas vezes um inteiro aparece na árvore
+quantasVezes :: Int -> Arvore -> Int
+quantasVezes x (Folha v) = if x == v then 1 else 0
+quantasVezes x (Nodo v esq dir) = 
+    (if x == v then 1 else 0) + quantasVezes x esq + quantasVezes x dir
+
+-- (5) Função para encontrar o maior valor em uma árvore
+maxArvore :: Arvore -> Int
+maxArvore (Folha v) = v
+maxArvore (Nodo v esq dir) = max v (max (maxArvore esq) (maxArvore dir))
+
+
+-- (6) Função para refletir uma árvore, trocando os ramos esquerdos e direitos
+refleteArvore :: Arvore -> Arvore
+refleteArvore (Folha v) = Folha v
+refleteArvore (Nodo v esq dir) = Nodo v (refleteArvore dir) (refleteArvore esq)
+
+-- (7) Função para transformar uma árvore em uma lista de inteiros (versão 2)
+geraLista2 :: Arvore -> [Int]
+geraLista2 (Folha v) = [v]
+geraLista2 (Nodo v esq dir) = v : geraLista2 esq ++ geraLista2 dir
+
+
+
+
+
+
+
 main :: IO ()
 main = do
     putStrLn "Teste de Funções Haskell"
