@@ -104,7 +104,7 @@ GHCi é o interpretador interativo de Haskell, que permite testar código rapida
 
 ## Recursos Adicionais
 
-- [Documentação Oficial do GHCI](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html))
+- [Documentação Oficial do GHCI](https://downloads.haskell.org/ghc/latest/docs/users_guide/ghci.html)
 - [Haskell.org](https://www.haskell.org/)
 
 ---
