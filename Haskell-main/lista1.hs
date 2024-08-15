@@ -323,6 +323,72 @@ geraLista2 :: Arvore -> [Int]
 geraLista2 (Folha v) = [v]
 geraLista2 (Nodo v esq dir) = v : geraLista2 esq ++ geraLista2 dir
 
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------- Fundamentos: Tipo Algebricos -----------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+--data N = Zero | Suc N
+--  deriving(Eq,Show)
+
+
+
+-- Definindo o tipo de dado Nat
+data Nat = Zero | Suc Nat
+    deriving (Eq, Show)
+somaALG :: Nat -> Nat -> Nat
+somaALG Zero n = n
+somaALG (Suc n1) n2 = Suc (somaALG n1 n2)
+
+-- (1)Implementação da função to_int
+to_int :: Nat -> Int
+to_int Zero     = 0
+to_int (Suc n)  = 1 + to_int n
+
+-- (2) Implementar a função to_nat que transforma um inteiro em um Nat:
+to_nat :: Int -> Nat
+to_nat n
+    | n <= 0    = Zero
+    | otherwise = Suc (to_nat (n - 1))
+
+-- (3) Função mult que multiplica dois Nats
+mult :: Nat -> Nat -> Nat
+mult Zero _         = Zero  -- Qualquer coisa vezes Zero1 é Zero1
+mult (Suc n) m = somaALG m (mult n m)  -- Suc1 n * m = m + (n * m)
+
+-- (4) Função leq (verifica se o primeiro Nat é menor ou igual ao segundo
+leq :: Nat -> Nat -> Bool
+leq Zero _ = True          -- Zero é sempre menor ou igual a qualquer Nat
+leq _ Zero = False         -- Qualquer Nat é maior que Zero
+leq (Suc n1) (Suc n2) = leq n1 n2  -- Compara os sucessores dos Nats
+-- leq (to_nat 5) (to_nat 10)
+
+-- (5) Função sub que executa a subtração de dois naturais
+sub :: Nat -> Nat -> Nat
+sub Zero _ = Zero            -- Zero menos qualquer número é Zero
+sub n Zero = n               -- Qualquer número menos Zero é o próprio número
+sub (Suc n1) (Suc n2) = sub n1 n2  -- Subtrai sucessores e continua a subtração
+
+-- (6)Função geq que verifica se o primeiro Nat é maior ou igual ao segundo
+geq :: Nat -> Nat -> Bool
+geq Zero _ = False           -- Zero não é maior ou igual a nenhum Nat positivo
+geq _ Zero = True            -- Qualquer Nat é maior ou igual a Zero
+geq (Suc n1) (Suc n2) = geq n1 n2  -- Compara os sucessores dos Nats
+
+-- (7) Função divi que calcula a divisão de dois naturais
+divi :: Nat -> Nat -> Nat
+divi _ Zero = error "Divisão por zero"
+divi Zero _ = Zero
+divi n1 n2 
+    | geq n1 n2 = Suc (divi (sub n1 n2) n2)
+    | otherwise  = Zero
+
 
 
 
